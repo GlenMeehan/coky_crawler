@@ -1,16 +1,36 @@
-# coky_crawler
+# Web Crawler Project
 
-A simple web crawler implemented in Python.
+## Description
+This project is a simple web crawler that searches for relevant URLs based on a search term. It uses various libraries such as `requests`, `beautifulsoup4`, and `nltk`.
 
-## Features
+## GitHub Setup
 
-- Crawls web pages starting from a seed URL.
-- Searches for a specific term and related synonyms.
-- Respects `robots.txt` rules.
-- Outputs relevant URLs and their titles.
+### Setting Up SSH Keys for GitHub
+1. Generate an SSH key:
+    ```sh
+    ssh-keygen -t ed25519 -C "your_email@example.com"
+    ```
+2. Add the SSH key to your GitHub account:
+    - Copy the SSH key:
+      ```sh
+      cat ~/.ssh/id_ed25519.pub
+      ```
+    - Paste the key into your GitHub SSH settings.
+3. Set your Git remote URL to use SSH:
+    ```sh
+    git remote set-url origin git@github.com:YourUsername/YourRepoName.git
+    ```
 
-## Installation
-
-1. Clone the repository:
-   ```sh
-   git clone https://github.com/your-username/your-repo-name.git
+### Commands
+- **Stage changes**:
+    ```sh
+    git add .
+    ```
+- **Commit changes**:
+    ```sh
+    git commit -m "Your commit message"
+    ```
+- **Push changes**:
+    ```sh
+    git push origin master
+    ```

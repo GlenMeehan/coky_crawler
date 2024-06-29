@@ -9,7 +9,7 @@ def crawl(seed_url, search_term, synonyms, max_results=10, max_depth=3):
     crawled_urls = set()
     urls_to_crawl = deque([(seed_url, 0)])
     results = []
-    user_agent = 'YourCrawlerBot/1.0'
+    user_agent = 'CokyCrawler/1.0 (+https://github.com/GlenMeehan/coky_crawler; contact@example.com)'
 
     while urls_to_crawl and len(results) < max_results:
         current_url, depth = urls_to_crawl.popleft()

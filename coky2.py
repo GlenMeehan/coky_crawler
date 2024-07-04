@@ -5,6 +5,7 @@ from spell_correction import correct_spelling
 from synonyms import get_synonyms
 # from intent import understand_intent (optional, if you want to use it)
 from web_crawler import crawl
+# from connect_sql import connect_to_database  # You no longer need to call this separately here
 
 # Ensure necessary NLTK data is downloaded
 nltk.download('wordnet')

@@ -1,7 +1,7 @@
 # Web Crawler Project
 
 ## Description
-This project is a simple web crawler that searches for relevant URLs based on a search term. It uses various libraries such as `requests`, `beautifulsoup4`, and `nltk`.
+This project is a simple web crawler that searches for relevant URLs based on a search term and creates an index. The addition of a control centre facilitates restting the index, seed url and stopping the crawl. It uses various libraries such as `requests`, `beautifulsoup4`, and `nltk`.
 
 ## GitHub Setup
 

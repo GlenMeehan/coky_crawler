@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1050</width>
-    <height>809</height>
+    <width>1153</width>
+    <height>861</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -41,10 +41,10 @@ color: rgb(92, 127, 103);</string>
    <widget class="QFrame" name="ResetFrame">
     <property name="geometry">
      <rect>
-      <x>30</x>
-      <y>110</y>
+      <x>40</x>
+      <y>60</y>
       <width>491</width>
-      <height>181</height>
+      <height>211</height>
      </rect>
     </property>
     <property name="styleSheet">
@@ -96,26 +96,115 @@ border: 1px solid black; border-radius: 10px;</string>
     <widget class="QPushButton" name="resetIndex">
      <property name="geometry">
       <rect>
-       <x>40</x>
-       <y>90</y>
+       <x>30</x>
+       <y>160</y>
        <width>421</width>
        <height>34</height>
       </rect>
      </property>
      <property name="styleSheet">
-      <string notr="true">font: 16pt &quot;Noto Sans Bengali&quot;;
-border: 1px solid black; border-radius: 10px;</string>
+      <string notr="true">QPushButton{
+font: 16pt &quot;Noto Sans Bengali&quot;;
+border: 1px solid black; border-radius: 10px;
+}
+
+QPushButton:hover {
+    background-color: lightgrey; /* Color when hovered */
+}
+
+QPushButton:pressed{
+	background-color: lightgreen;
+}
+</string>
      </property>
      <property name="text">
       <string>RESET INDEX</string>
+     </property>
+    </widget>
+    <widget class="QLineEdit" name="searchTerm">
+     <property name="geometry">
+      <rect>
+       <x>140</x>
+       <y>60</y>
+       <width>311</width>
+       <height>32</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background: transparent;
+font: 14pt &quot;Noto Sans Bengali&quot;;
+border: 1px solid black; border-radius: 10px;</string>
+     </property>
+     <property name="inputMask">
+      <string/>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_2">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>60</y>
+       <width>121</width>
+       <height>31</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">font: 16pt &quot;Noto Sans Bengali&quot;;
+background: transparent;
+border: transparent;</string>
+     </property>
+     <property name="frameShape">
+      <enum>QFrame::NoFrame</enum>
+     </property>
+     <property name="text">
+      <string>Search Term</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_3">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>100</y>
+       <width>121</width>
+       <height>31</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">font: 16pt &quot;Noto Sans Bengali&quot;;
+background: transparent;
+border: transparent;</string>
+     </property>
+     <property name="frameShape">
+      <enum>QFrame::NoFrame</enum>
+     </property>
+     <property name="text">
+      <string>Crawl Depth</string>
+     </property>
+    </widget>
+    <widget class="QLineEdit" name="crawlDepth">
+     <property name="geometry">
+      <rect>
+       <x>140</x>
+       <y>100</y>
+       <width>311</width>
+       <height>32</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background: transparent;
+font: 14pt &quot;Noto Sans Bengali&quot;;
+border: 1px solid black; border-radius: 10px;</string>
+     </property>
+     <property name="inputMask">
+      <string comment="&quot;0&quot;"/>
      </property>
     </widget>
    </widget>
    <widget class="QFrame" name="frame">
     <property name="geometry">
      <rect>
-      <x>40</x>
-      <y>470</y>
+      <x>580</x>
+      <y>60</y>
       <width>271</width>
       <height>131</height>
      </rect>
@@ -140,8 +229,19 @@ background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgb
       </rect>
      </property>
      <property name="styleSheet">
-      <string notr="true">font: 16pt &quot;Noto Sans Bengali&quot;;
-border: 1px solid black; border-radius: 10px;</string>
+      <string notr="true">QPushButton{
+font: 16pt &quot;Noto Sans Bengali&quot;;
+border: 1px solid black; border-radius: 10px;
+}
+
+QPushButton:hover {
+    background-color: lightgrey; /* Color when hovered */
+}
+
+QPushButton:pressed{
+	background-color: lightgreen;
+}
+</string>
      </property>
      <property name="text">
       <string>STOP</string>
@@ -157,11 +257,306 @@ border: 1px solid black; border-radius: 10px;</string>
       </rect>
      </property>
      <property name="styleSheet">
-      <string notr="true">font: 16pt &quot;Noto Sans Bengali&quot;;
-border: 1px solid black; border-radius: 10px;</string>
+      <string notr="true">QPushButton{
+font: 16pt &quot;Noto Sans Bengali&quot;;
+border: 1px solid black; border-radius: 10px;
+}
+
+QPushButton:hover {
+    background-color: lightgrey; /* Color when hovered */
+}
+
+QPushButton:pressed{
+	background-color: lightgreen;
+}
+</string>
      </property>
      <property name="text">
       <string>START</string>
+     </property>
+    </widget>
+   </widget>
+   <widget class="QFrame" name="frame_2">
+    <property name="geometry">
+     <rect>
+      <x>900</x>
+      <y>60</y>
+      <width>271</width>
+      <height>131</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">border: 1px solid black; border-radius: 10px;
+background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(220, 220, 220, 0.9), stop:1 rgba(128, 128, 128, 0.5));</string>
+    </property>
+    <property name="frameShape">
+     <enum>QFrame::StyledPanel</enum>
+    </property>
+    <property name="frameShadow">
+     <enum>QFrame::Raised</enum>
+    </property>
+    <widget class="QPushButton" name="index">
+     <property name="geometry">
+      <rect>
+       <x>30</x>
+       <y>70</y>
+       <width>191</width>
+       <height>34</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">QPushButton{
+font: 16pt &quot;Noto Sans Bengali&quot;;
+border: 1px solid black; border-radius: 10px;
+}
+
+QPushButton:hover {
+    background-color: lightgrey; /* Color when hovered */
+}
+
+QPushButton:pressed{
+	background-color: lightgreen;
+}
+
+</string>
+     </property>
+     <property name="text">
+      <string>INDEX</string>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="crawlState">
+     <property name="geometry">
+      <rect>
+       <x>30</x>
+       <y>20</y>
+       <width>191</width>
+       <height>34</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">QPushButton{
+font: 16pt &quot;Noto Sans Bengali&quot;;
+border: 1px solid black; border-radius: 10px;
+}
+
+QPushButton:hover {
+    background-color: lightgrey; /* Color when hovered */
+}
+
+QPushButton:pressed{
+	background-color: lightgreen;
+}
+</string>
+     </property>
+     <property name="text">
+      <string>CRAWL STATE</string>
+     </property>
+    </widget>
+   </widget>
+   <widget class="QTableView" name="crawlStateTable">
+    <property name="geometry">
+     <rect>
+      <x>50</x>
+      <y>360</y>
+      <width>550</width>
+      <height>441</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QTableView" name="indexTable">
+    <property name="geometry">
+     <rect>
+      <x>610</x>
+      <y>360</y>
+      <width>550</width>
+      <height>441</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QLabel" name="statusLabel">
+    <property name="geometry">
+     <rect>
+      <x>60</x>
+      <y>300</y>
+      <width>471</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">font: 16pt &quot;Noto Sans Bengali&quot;;
+border: 1px solid black; border-radius: 10px;</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QFrame" name="frame_3">
+    <property name="geometry">
+     <rect>
+      <x>580</x>
+      <y>200</y>
+      <width>271</width>
+      <height>91</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">border: 1px solid black; border-radius: 10px;
+background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(220, 220, 220, 0.9), stop:1 rgba(128, 128, 128, 0.5));</string>
+    </property>
+    <property name="frameShape">
+     <enum>QFrame::StyledPanel</enum>
+    </property>
+    <property name="frameShadow">
+     <enum>QFrame::Raised</enum>
+    </property>
+    <widget class="QLabel" name="label_5">
+     <property name="geometry">
+      <rect>
+       <x>20</x>
+       <y>50</y>
+       <width>121</width>
+       <height>31</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">font: 16pt &quot;Noto Sans Bengali&quot;;
+background: transparent;
+border: transparent;</string>
+     </property>
+     <property name="text">
+      <string>Index:</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_4">
+     <property name="geometry">
+      <rect>
+       <x>20</x>
+       <y>10</y>
+       <width>121</width>
+       <height>31</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">font: 16pt &quot;Noto Sans Bengali&quot;;
+background: transparent;
+border: transparent;</string>
+     </property>
+     <property name="text">
+      <string>Crawl State:</string>
+     </property>
+    </widget>
+    <widget class="QLineEdit" name="stateURLs">
+     <property name="geometry">
+      <rect>
+       <x>160</x>
+       <y>10</y>
+       <width>71</width>
+       <height>32</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background: transparent;
+font: 14pt &quot;Noto Sans Bengali&quot;;
+border: 1px solid black; border-radius: 10px;</string>
+     </property>
+     <property name="inputMask">
+      <string comment="^https?://[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}(/.*)?$"/>
+     </property>
+    </widget>
+    <widget class="QLineEdit" name="indexURLs">
+     <property name="geometry">
+      <rect>
+       <x>160</x>
+       <y>50</y>
+       <width>71</width>
+       <height>32</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background: transparent;
+font: 14pt &quot;Noto Sans Bengali&quot;;
+border: 1px solid black; border-radius: 10px;</string>
+     </property>
+     <property name="inputMask">
+      <string comment="^https?://[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}(/.*)?$"/>
+     </property>
+    </widget>
+   </widget>
+   <widget class="QFrame" name="frame_4">
+    <property name="geometry">
+     <rect>
+      <x>580</x>
+      <y>300</y>
+      <width>551</width>
+      <height>51</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">border: 1px solid black; border-radius: 10px;
+background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(220, 220, 220, 0.9), stop:1 rgba(128, 128, 128, 0.5));</string>
+    </property>
+    <property name="frameShape">
+     <enum>QFrame::StyledPanel</enum>
+    </property>
+    <property name="frameShadow">
+     <enum>QFrame::Raised</enum>
+    </property>
+    <widget class="QProgressBar" name="pageRankProgress">
+     <property name="geometry">
+      <rect>
+       <x>250</x>
+       <y>10</y>
+       <width>281</width>
+       <height>23</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">QProgressBar {
+    border: 2px solid #8f8f91;
+    border-radius: 5px;
+    background: #bdbec0;
+    text-align: center;
+    color: black;
+    font-weight: bold;
+}
+
+QProgressBar::chunk {
+    background: qlineargradient(
+        spread: pad,
+        x1: 1,
+        y1: 1,
+        x2: 1,
+        y2: 0,
+        stop: 0 #add8e6, /* Dark metallic silver */
+        stop: 1 #00008b /* Bronze */
+    );
+    border-radius: 5px;
+}
+</string>
+     </property>
+     <property name="value">
+      <number>0</number>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_6">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>10</y>
+       <width>231</width>
+       <height>31</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">font: 16pt &quot;Noto Sans Bengali&quot;;
+background: transparent;
+border: transparent;</string>
+     </property>
+     <property name="text">
+      <string>Page Ranking progress:</string>
      </property>
     </widget>
    </widget>
@@ -171,7 +566,7 @@ border: 1px solid black; border-radius: 10px;</string>
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>1050</width>
+     <width>1153</width>
      <height>30</height>
     </rect>
    </property>

@@ -11,8 +11,10 @@ from requests.adapters import HTTPAdapter
 from urllib3.util.retry import Retry
 from robots import can_fetch
 from crawl_state import save_crawl_state, load_crawl_state, get_next_url_from_crawl_state
-from pagerank import calculate_pagerank
+from pagerank import calculate_page_rank
 from age_rating import age_rating
+from database_utils import get_record_count
+
 
 def check_stop_flag():
     try:
@@ -69,15 +71,17 @@ def crawl(seed_url, search_term, synonyms, max_results=None, max_depth=1):
         max_results = int(max_results)
 
     try:
+        print("Starting the crawling process.")
         while urls_to_crawl and (max_results is None or result_count < max_results):
             if check_stop_flag():
                 print("Crawling stopped by user.")
-                exit()  # Immediately stop the script
+                break
 
             current_url, depth = urls_to_crawl.popleft()
             print(f"Crawling URL: {current_url}, Depth: {depth}")
 
             if depth > max_depth:
+                print(f"Skipping URL {current_url} due to exceeding max depth.")
                 continue
 
             if not can_fetch(current_url, user_agent):
@@ -130,24 +134,49 @@ def crawl(seed_url, search_term, synonyms, max_results=None, max_depth=1):
                         urls_to_crawl.append((cleaned_link, depth + 1))
                         print(f"Adding to queue: {cleaned_link} with depth {depth + 1}")
 
+
             # Save the updated state
             urls_to_crawl = filter_urls(urls_to_crawl, crawled_urls, max_depth)
             save_crawl_state(conn, urls_to_crawl)
             crawled_urls.add(current_url)
 
+
+
     except Exception as ex:
         print(f"Exception during crawling: {ex}")
 
     finally:
-        # Calculate PageRank for the crawled URLs
-        pages = list(crawled_urls)
-        pagerank = calculate_pagerank(pages, links_list)
-        for page, rank in pagerank.items():
-            cursor.execute("UPDATE web_index SET page_rank = ? WHERE url = ?", (rank, page))
-        conn.commit()
+        # Ensure that cleanup and page rank calculation are only done once
+        print("Entering the finally block.")
+        try:
+            # Calculate PageRank for the crawled URLs
+            print("***B PAGE IS BEING RANKED NOW***")
+            pages = list(crawled_urls)
+            pagerank = calculate_page_rank(pages, links_list)
+            for page, rank in pagerank.items():
+                cursor.execute("UPDATE web_index SET page_rank = ? WHERE url = ?", (rank, page))
+            conn.commit()
+        except Exception as e:
+            print(f"Exception during page rank calculation: {e}")
 
+        # Closing database connection
+        print("Closing database connection.")
         cursor.close()
         conn.close()
+        print("Finally completed")
 
+    # Ensure the function returns and doesn't re-enter the crawling loop
+    print("Exiting crawl function.")
     return results if results else None
 
+# Example entry point function
+if __name__ == "__main__":
+    # Load your configuration or input parameters here
+    seed_url = "http://example.com"
+    search_term = "example"
+    synonyms = ["sample", "demo"]
+    max_results = 10
+    max_depth = 2
+
+    results = crawl(seed_url, search_term, synonyms, max_results, max_depth)
+    print(f"Crawling completed with results: {results}")

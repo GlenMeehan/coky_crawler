@@ -28,3 +28,4 @@ def get_next_url_from_crawl_state():
     else:
         conn.close()
         return None
+

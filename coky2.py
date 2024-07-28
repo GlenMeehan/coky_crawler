@@ -1,35 +1,53 @@
 #!/usr/bin/env python3
 
-import nltk
-from spell_correction import correct_spelling
+import sys
 from synonyms import get_synonyms
 from web_crawler import crawl
-from connect_sql import connect_to_database
-from crawl_state import get_next_url_from_crawl_state, save_crawl_state
+from crawl_state import get_next_url_from_crawl_state
 
-# Ensure necessary NLTK data is downloaded
-nltk.download('wordnet')
+def check_stop_flag():
+    try:
+        with open('stop_flag.txt', 'r') as f:
+            return f.read().strip() == '1'
+    except Exception as e:
+        print(f"Error reading stop flag: {e}")
+        return False
 
 def main():
-    search_term = input("Enter a search term: ")
-    corrected_search_term = correct_spelling(search_term)
-    print(f"Corrected Search Term: {corrected_search_term}")
+    if len(sys.argv) < 3:
+        print("Usage: python3 coky2.py <search_term> <max_depth>")
+        sys.exit(1)
 
-    synonyms = get_synonyms(corrected_search_term)
-    print(f"Synonyms: {synonyms}")
+    search_term = sys.argv[1]
+    max_depth = int(sys.argv[2])
 
-    while True:
-        next_url = get_next_url_from_crawl_state()
-        if not next_url:
-            print("No URLs found in crawl_state. Exiting.")
-            break
+    try:
+        while True:
+            seed_url = get_next_url_from_crawl_state()
+            if not seed_url:
+                print("No URLs found in crawl_state. Exiting.")
+                break
 
-        print(f"Crawling URL: {next_url}, Depth: 0")
-        results = crawl(next_url, corrected_search_term, synonyms)
+            print(f"Crawling URL: {seed_url}, Depth: 0")
+            results = crawl(seed_url, search_term, get_synonyms(search_term), max_depth=max_depth)
 
-        print("\nSearch Results:")
-        for url, title in results:
-            print(f"URL: {url}\nTitle: {title}\n")
+            if results:
+                print("\nSearch Results:")
+                for url, title in results:
+                    print(f"URL: {url}\nTitle: {title}\n")
+
+            # After crawling, check if we should continue
+            if check_stop_flag():
+                print("Crawling stopped by user.")
+                break
+
+    except Exception as ex:
+        print(f"Exception in main: {ex}")
+    finally:
+        print("Main: Entering the finally block.")
+        with open('status_flag.txt', 'w') as f:
+            f.write('Crawling completed.')
+        print("Main: Finally block completed.")
 
 if __name__ == "__main__":
     main()
